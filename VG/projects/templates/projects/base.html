@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>VG Project Monitoring Platform</title>
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- Alternative to Bootstrap 3 Glyphicons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- {# Custom CSS#} -->
+    <link rel="stylesheet" href="{% static 'css/site.css' %}">
+
+    <script src="{% static 'js/site.js' %}"></script>
+  </head>
+  <body class="hero-anime">
+
+  	<div class="navigation-wrap bg-light start-header start-style">
+  		<div class="container">
+  			<div class="row">
+  				<div class="col-12">
+  					<nav class="navbar navbar-expand-md navbar-dark">
+               <a id='title' class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" href="{% url 'project_list_all' %}">VG Project Monitoring Platform</a>
+  						<div class="collapse navbar-collapse" id="navbarSupportedContent">
+  							<ul class="navbar-nav ml-auto py-4 py-md-0">
+                  {% if user.is_authenticated %}
+                  <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4"><a class="nav-link" href="https://www.vgengineering.com/">VG Home Page</a></li>
+                  <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+  								<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4"><a class="nav-link" href="#">Welcome: {{ user.username }}</a></li>
+                  {% else %}
+                  <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4"><a class="nav-link" href="https://www.vgengineering.com/">VG Home Page</a></li>
+                  <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+                  {% endif %}
+                </ul>
+  						</div>
+
+  					</nav>
+  				</div>
+  			</div>
+  		</div>
+  	</div>
+
+      {% if user.is_authenticated %}
+        <!-- The sidebar -->
+        <div class="sidebar">
+          <ul>
+            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4"><a class="nav-link" href="{% url 'project_create' %}">Create New Project</a></li>
+            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4"><a class="nav-link" href="{% url 'project_list_all' %}">See All Projects</a></li>
+            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4"><a class="nav-link" href="{% url 'project_list_completed' %}">See Finished Projects</a></li>
+            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4"><a class="nav-link" href="{% url 'project_list_ongoing' %}">See Ongoing Projects</a></li>
+            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4"><a class="nav-link" href="{% url 'project_list_approved' %}">See Approved Projects</a></li>
+            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4"><a class="nav-link" href="{% url 'project_list_unapproved' %}">See Unapproved Projects</a></li>
+
+
+            <li class="nav-divider"></li>
+            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4"><a class="nav-link" href="{% url 'client_create' %}">Create New Client</a></li>
+            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4"><a class="nav-link" href="{% url 'client_list' %}">See All Clients</a></li>
+            <li class="nav-divider"></li>
+            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4"><a class="nav-link" href="{{ 'admin' }}">Administrator Page</a></li>
+          </ul>
+        </div>
+      {% endif %}
+        <div class="container">
+
+          {% block content %}
+          {% endblock %}
+        </div>
+
+  </body>
+</html>

@@ -1,0 +1,38 @@
+{% extends 'projects/base.html' %}
+{% block content %}
+<p></p>
+<br>
+<p></p>
+<br>
+<p></p>
+  <h3>Project Detail Page</h3>
+  <h5>{{project.title}} has been successfully created.</h5>
+
+  <table>
+    <thead>
+      <th id='tablehead'>Title</th>
+      <th id='tablehead'>Type</th>
+      <th id='tablehead'>Client</th>
+      <th id='tablehead'>Start Date</th>
+      <th id='tablehead'>Deadline</th>
+      <th id='tablehead'>Project Status</th>
+    </thead>
+    <tr>
+      <td id='tablerow'>{{project.title}}</td>
+      <td id='tablerow'>{{project.type}}</td>
+      <td id='tablerow'>{{project.client}}</td>
+      <td id='tablerow'>{{project.start_date}}</td>
+      <td id='tablerow'>{{project.deadline}}</td>
+      <td id='tablerow'>{{project.status}}</td>
+    </tr>
+  </table>
+
+  <br>
+  <p></p>
+
+    <a class="btn btn-primary" href="{% url 'project_update' pk=project.pk %}"><span class="fa fa-pencil"></span></a>
+    <a class="btn btn-primary" href="{% url 'project_delete' pk=project.pk %}"><span class="fa fa-remove"></span></a>
+
+
+
+{% endblock %}

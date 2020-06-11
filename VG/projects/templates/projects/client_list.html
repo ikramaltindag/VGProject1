@@ -1,0 +1,35 @@
+{% extends "projects/base.html" %}
+{% block content %}
+
+<br>
+<p></p>
+<br>
+
+<div class="container">
+  <br>
+  <div class="jumbotron">
+    <div class="centerstage">
+        <table>
+          <thead>
+            <td id='tablehead'>Client Number</td>
+            <td id='tablehead'>Creator</td>
+            <td id='tablehead'>Name</td>
+            <td id='tablehead'>Contact Person</td>
+            <td id='tablehead'>Address</td>
+            <td id='tablehead'>Phone</td>
+          </thead>
+          {% for client in object_list %}
+          <tr>
+            <td id='tablerow'> <a href="{% url 'client_detail' pk=client.pk %}">{{client.id}}</a> </td>
+            <td id='tablerow'>{{client.creator}}</td>
+            <td id='tablerow'>{{client.name}}</td>
+            <td id='tablerow'>{{client.contact_person}}</td>
+            <td id='tablerow'>{{client.address}}</td>
+            <td id='tablerow'>{{client.phone}}</td>
+          </tr>
+          {% endfor %}
+        </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

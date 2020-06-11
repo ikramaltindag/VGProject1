@@ -1,0 +1,43 @@
+{% extends "projects/base.html" %}
+{% block content %}
+
+<br>
+<p></p>
+<br>
+
+<div class="container">
+  <br>
+  <div class="jumbotron">
+    <div class="centerstage">
+        <table>
+          <thead>
+            <td id='tablehead'>Project Number</td>
+            <td id='tablehead'>Creator</td>
+            <td id='tablehead'>Title</td>
+            <td id='tablehead'>Type</td>
+            <td id='tablehead'>Client</td>
+            <td id='tablehead'>Duration (in days)</td>
+            <td id='tablehead'>Start Date</td>
+            <td id='tablehead'>Deadline</td>
+            <td id='tablehead'>Status</td>
+            <td id='tablehead'>approval_status</td>
+          </thead>
+          {% for project in object_list %}
+          <tr>
+            <td id='tablerow'> <a href="{% url 'project_detail' pk=project.pk %}">{{project.id}}</a> </td>
+            <td id='tablerow'>{{project.creator}}</td>
+            <td id='tablerow'>{{project.title}}</td>
+            <td id='tablerow'>{{project.type}}</td>
+            <td id='tablerow'>{{project.client}}</td>
+            <td id='tablerow'>{{project.duration_in_days}}</td>
+            <td id='tablerow'>{{project.start_date}}</td>
+            <td id='tablerow'>{{project.deadline}}</td>
+            <td id='tablerow'>{{project.status}}</td>
+            <td id='tablerow'>{{project.approval_status}}</td>
+          </tr>
+          {% endfor %}
+        </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

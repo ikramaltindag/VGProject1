@@ -1,0 +1,33 @@
+{% extends 'projects/base.html' %}
+{% block content %}
+<p></p>
+<br>
+<p></p>
+<br>
+<p></p>
+  <h3>Client Detail Page</h3>
+  <h5>{{client.name}} has been successfully created.</h5>
+
+  <table>
+    <thead>
+      <th id='tablehead'>Name</th>
+      <th id='tablehead'>Contact Person</th>
+      <th id='tablehead'>Address</th>
+      <th id='tablehead'>Phone</th>
+    </thead>
+    <tr>
+      <td id='tablerow'>{{ client.name }}</td>
+      <td id='tablerow'>{{client.contact_person}}</td>
+      <td id='tablerow'>{{client.address}}</td>
+      <td id='tablerow'>{{client.phone}}</td>
+    </tr>
+  </table>
+
+  <br>
+  <p></p>
+
+    <a class="btn btn-primary" href="{% url 'client_update' pk=client.pk %}"><span class="fa fa-pencil"></span></a>
+    <a class="btn btn-primary" href="{% url 'client_delete' pk=client.pk %}"><span class="fa fa-remove"></span></a>
+
+
+{% endblock %}
