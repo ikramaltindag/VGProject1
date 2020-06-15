@@ -7,6 +7,9 @@ from django.contrib.auth.models import User
 
 class Project(models.Model):
     creator = models.ForeignKey('auth.User',on_delete=models.CASCADE)
+    # senaryomuzda sadece 3 user var (User1,User2,User3) ve bu formu doldurup onay silsilesini baslatma isini sadece User1 yapabilir.
+    # o yuzden creator sadece User1 olabilir
+
     title = models.CharField(max_length=100)
     type = models.CharField(max_length=100)
     client = models.ForeignKey('client',on_delete=models.CASCADE)
@@ -15,11 +18,27 @@ class Project(models.Model):
     start_date = models.DateField(null=True)
     deadline = models.DateField(null=True)
     notes = models.TextField(null=True)
-    STATUS_CHOICE = (('Completed','Completed'),('Ongoing','Ongoing'))
-    status = models.CharField(max_length=9,choices=STATUS_CHOICE,blank=False)
-    APPROVAL_STATUS = (('approved','approved'),('unapproved','unapproved'))
-    approval_status = models.CharField(max_length=10,choices=APPROVAL_STATUS,blank=False)
-    #created_at=models.DateTimeField(auto_now_add=True)
+    design_document = # buraya dokuman ekleme ozelligi getirebiliriz. bu alana dokuman ekleme yetkisi de sadece User2'de olsun
+
+    material_list = # buraya dokuman ekleme ozelligi getirebiliriz. bu alana dokuman ekleme yetkisi de sadece User3'te olsun
+    
+    current_status = ('User1','User2','User3','completed')
+    #bunun amaci is suan kimde bekliyor, onu gormek
+
+    next_status = ('User2','User3','completed')
+    #bunun amaci da current_statusteki user onayladiginda is kime gidecek, onu gormek. 
+
+    previous_status = ('User1','User2','User3')
+    #bunun amaci da current_statusteki user reddettiginde is kime gidecek, onu gormek
+    
+    def change_status(curent_status,next_status,project):
+        project=Project.object.get(project)
+        
+        def approve(self):
+            current_user = #bir sonraki user olacak. User3 onayladiginda ise otomatik olarak completed'a donecek
+        
+        def reject(self):
+            current_user = #bir sonraki user olacak. User1 icin reddetme secenegi olmayacak dogal olarak
 
     def get_absolute_url(self):
         return reverse('project_detail', kwargs={'pk':self.pk})
